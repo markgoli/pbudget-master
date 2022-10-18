@@ -1,0 +1,68 @@
+/*************************************************************************
+ * Your custom CSS file
+ *************************************************************************/
+
+#download-button-container {
+  display: none;
+}
+
+#download-button {
+  padding: 10px 20px;
+  margin: 5px 0 15px 0;
+  font-size: 16px;
+  width: 250px;
+}
+
+#region-dropdown {
+  width: 250px;
+}
+
+#timezone-dropdown {
+  width: 250px;
+}
+
+#zipcode-input {
+  width: 250px;
+}
+
+#to-time-input,
+#from-time-input {
+  width: 110px;
+}
+
+#to-time-input:disabled,
+#from-time-input:disabled {
+  opacity: 0.5;
+}
+
+#to-time-txt {
+  margin: 0px 5px;
+}
+
+#demo-video {
+  max-width: 400px;
+}
+
+#zipcode-input-container {
+  display: none;
+}
+
+.ui-datepicker.ui-widget.ui-widget-content {
+  border: 1px solid #7d7d7d;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.ui-datepicker td span,
+.ui-datepicker td a {
+  padding: 0.4em;
+}
+
+#demo-video {
+  max-width: 400px;
+}
+
+@media screen and (min-width: 900px) {
+  .flex-item-stretch-demo-video {
+    flex: 2.1;
+  }
+}

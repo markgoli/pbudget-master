@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Geo Heatmap</title>
+  <meta charset="utf-8">
+  <link href="lib/geo-heatmap/GeoHeatmap.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="lib/geo-heatmap/ColorScaleLegend.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="lib/geo-heatmap/d3.v3.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD_2PNa78sp_7BoCqZbGpWXviLBzHbJZv4"></script>
+  <script src="lib/geo-heatmap/GeoHeatmap.js" type="text/javascript"></script>
+  <script src="lib/geo-heatmap/ColorScaleLegend.js" type="text/javascript"></script>
+  <style>
+    #map-container {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: auto;
+    }
+
+    #color-legend-container {
+      position: absolute;
+      width: 40px;
+      height: 150px;
+      border: 1px solid #666666;
+      right: 20px;
+      z-index: 1;
+      bottom: 20px;
+    }
+
+    .noselect {
+      -webkit-touch-callout: none;
+      /* iOS Safari */
+      -webkit-user-select: none;
+      /* Chrome/Safari/Opera */
+      -khtml-user-select: none;
+      /* Konqueror */
+      -moz-user-select: none;
+      /* Firefox */
+      -ms-user-select: none;
+      /* Internet Explorer/Edge */
+      user-select: none;
+      /* Non-prefixed version, currently not supported by any browser */
+    }
+  </style>
+  <script type="text/javascript">
+    jQuery.support.cors = true;
+    var year;
+    var type;
+
+    // Parse variables in the format of a hash url string
+    function parseVars(str, keep_null_or_undefined_vars) {
+      var vars = {};
+      if (str) {
+        var keyvals = str.split(/[#?&]/);
+        for (var i = 0; i < keyvals.length; i++) {
+          var keyval = keyvals[i].split('=');
+          vars[keyval[0]] = keyval[1];
+        }
+      }
+      // Delete keys with null/undefined values
+      if (!keep_null_or_undefined_vars) {
+        Object.keys(vars).forEach(function (key) {
+          return (vars[key] == null || key == "") && delete vars[key];
+        });
+      }
+      return vars;
+    }
+
+    // Get the parameters from the query string
+    function getQueryParas() {
+      return parseVars(window.location.search);
+    }
+
+    function loadData() {
+      var data = {};
+      var query_vars = getQueryParas();
+      // IMPORTANT: to update this page, remember to add new available years
+      var available_years = ["2017", "2018", "2019", "2020", "2021"];
+      var available_types = ["smell", "user"];
+      year = available_years[0];
+      type = available_types[0];
+      if ("year" in query_vars) {
+        var desired_year = query_vars["year"];
+        if (available_years.indexOf(desired_year) !== -1) {
+          year = desired_year;
+        }
+      }
+      if ("type" in query_vars) {
+        var desired_type = query_vars["type"];
+        if (available_types.indexOf(desired_type) !== -1) {
+          type = desired_type;
+        }
+      }
+      var path;
+      /*
+        To update this map, add code for another year below,
+        ...so that you can access "smell_map.html?year=XXXX&type=smell" and "smell_map.html?year=XXXX&type=user"
+        ...which is necessary for updating the "analysis.html" page
+      */
+      if (year == "2017") {
+        if (type == "smell") {
+          path = "smell_pgh_tracker/zipcode_metadata_smell_2017.json"
+        } else if (type == "user") {
+          path = "smell_pgh_tracker/zipcode_metadata_user_2017.json"
+        }
+      } else if (year == "2018") {
+        if (type == "smell") {
+          path = "smell_pgh_tracker/zipcode_metadata_smell_2018.json"
+        } else if (type == "user") {
+          path = "smell_pgh_tracker/zipcode_metadata_user_2018.json"
+        }
+      } else if (year == "2019") {
+        if (type == "smell") {
+          path = "smell_pgh_tracker/zipcode_metadata_smell_2019.json"
+        } else if (type == "user") {
+          path = "smell_pgh_tracker/zipcode_metadata_user_2019.json"
+        }
+      } else if (year == "2020") {
+        if (type == "smell") {
+          path = "smell_pgh_tracker/zipcode_metadata_smell_2020.json"
+        } else if (type == "user") {
+          path = "smell_pgh_tracker/zipcode_metadata_user_2020.json"
+        }
+      } else if (year == "2021") {
+        if (type == "smell") {
+          path = "smell_pgh_tracker/zipcode_metadata_smell_2021.json"
+        } else if (type == "user") {
+          path = "smell_pgh_tracker/zipcode_metadata_user_2021.json"
+        }
+      }
+      // Start loading data simultaneously
+      $.when(
+        // Load the GeoJSON that contains the zipcode boundaries
+        $.getJSON("lib/geo-heatmap/zipcode_bound_geoJson.json", function (json) {
+          data["zipcode_bound_geoJson"] = json;
+        }).fail(function (response) {
+          console.log("server error when loading zip code bound GeoJson: ", response);
+        }),
+        // Load the table that maps zipcodes, bounds, and center positions
+        $.getJSON("lib/geo-heatmap/zipcode_bound_info.json", function (json) {
+          data["zipcode_bound_info"] = json["data"];
+        }).fail(function (response) {
+          console.log("server error when loading zipcode bound information:", response);
+        }),
+        // Load smell reports
+        $.getJSON(path, function (json) {
+          data["zipcode_metadata"] = json;
+        }).fail(function (response) {
+          console.log("server error when loading zipcode metadata:", response);
+        }),
+      ).then(function () {
+        init(data, year);
+      });
+    }
+
+    function init(data, year) {
+      var zipcode_metadata = data["zipcode_metadata"];
+      var color_scale = d3.scale.linear().domain([0, 0.5, 1]).range(["#deebf7", "#6baed6", "#084594"]).interpolate(d3.interpolateLab);
+
+      // Set parameters
+      var max_input = 1000;
+      if (type == "user") {
+        max_input = 300;
+      }
+
+      // Create the geo heatmap object
+      var settings = {
+        zipcode_bound_geoJson: data["zipcode_bound_geoJson"],
+        zipcode_bound_info: data["zipcode_bound_info"],
+        zipcode_metadata: zipcode_metadata,
+        color_scale: color_scale,
+        max_input: max_input,
+        min_input: 0,
+        map_saturation: -100,
+        zoom_control: true,
+        init_map_zoom: 11,
+        force_two_finger_pan: true,
+        init_map_center: {
+          lat: 40.4,
+          lng: -79.93
+        },
+        info_window_html_layout: function (zipcode) {
+          var html = "";
+          html += "<table>";
+          html += "  <tr>";
+          html += "    <td>Year: " + year + "</td>";
+          html += "  </tr>";
+          html += "  <tr>";
+          html += "    <td>Zipcode: " + zipcode + "</td>";
+          html += "  </tr>";
+          html += "  <tr>";
+          if (type == "smell") {
+            html += "    <td>Number of reports: " + zipcode_metadata[zipcode] + "</td>";
+          } else if (type == "user") {
+            html += "    <td>Number of unique users: " + zipcode_metadata[zipcode] + "</td>";
+          }
+          html += "  </tr>";
+          html += "</table>";
+          return html;
+        }
+      };
+      geo_heatmap = new edaplotjs.GeoHeatmap("#map-container", settings);
+      color_legned = new edaplotjs.ColorScaleLegend("#color-legend-container", {
+        color_scale: color_scale,
+        top_text: ">" + max_input,
+        bottom_text: "0"
+      });
+    }
+
+    $(loadData);
+  </script>
+</head>
+
+<body>
+  <div id="map-container" class="noselect"></div>
+  <div id="color-legend-container" class="noselect"></div>
+</body>
+
+</html>

@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>PersonalBudget</title>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/frame.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/controls.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/widgets.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/custom.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://momentjs.com/downloads/moment.min.js"></script>
+  <script src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/widgets.js"></script>
+  <script src="js/data.js"></script>
+  <style>
+    .menu-data {
+      color: rgb(255, 255, 255) !important;
+      opacity: 1 !important;
+      font-weight: 700 !important;
+    }
+
+    .no-ul-margins {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="menu-container"></div>
+  <div class="content-container">
+    <div class="content">
+      <div class="content-table flex-column">
+        <div class="flex-row">
+          <div class="flex-item flex-column">
+            <h2>Download Smell Report Data for Allegheny County</h2>
+            <hr>
+            <p class="text">
+              We take every precaution to protect any personally identifiable data.
+              All information shown on the public map visualization for Smell PGH is anonymous and location data is skewed to protect your privacy.
+              Personal contact information you enter in the settings tab is not stored in our database.
+              Our backend database only contains anonymous User IDs created by your app service (Apple or Google Play).
+            </p>
+            <p class="text">
+              This data is in a <span class="highlight-text">CSV format</span>.
+              You can open it in Google Sheets, Excel, or any text editor.
+              Each smell report is a unique line item.
+              Each field in the line is separated by commas.
+              Data fields include:
+            </p>
+            <ul>
+              <li>Date and time of smell report</li>
+              <ul class="no-ul-margins">
+                <li>You can choose to download the data in UTC time or your local time</li>
+                <li>Your local time will be the time stamp on the machine you use to download the data</li>
+                <li>The date/time will be formatted as follows: 06/01/2016 01:47:52 -04:00</li>
+                <li>In the example above, the "-04:00" at the end of the string indicates time zone</li>
+              </ul>
+              <li>Smell value (a number 1 through 5, with 5 being the most severe)</li>
+              <li>Skewed latitude and longitude coordinates of smell report location</li>
+              <ul class="no-ul-margins">
+                <li>To protect user privacy, actual locations are NOT shown</li>
+                <li>lat/lon coordinates are randomly assigned, within a short radius of the actual location</li>
+              </ul>
+              <li>Zip code of smell report location</li>
+              <li>Smell description and symptoms linked to odor (if provided)</li>
+            </ul>
+            <span class="add-top-margin">Select the Pittsburgh city or enter ZIP codes:</span>
+            <div class="custom-dropdown large add-top-margin-small add-bottom-margin" id="region-dropdown">
+              <a tabindex="0" href="javascript:void(0)"><span></span></a>
+              <div></div>
+            </div>
+            <div id="zipcode-input-container">
+              <span>Enter ZIP codes, seperated by comma:</span>
+              <div class="add-top-margin-small add-bottom-margin">
+                <input id="zipcode-input" class="custom-textbox" type="text" placeholder="e.g. 15213,15217">
+              </div>
+            </div>
+            <span>Select a timezone:</span>
+            <div class="custom-dropdown large add-top-margin-small add-bottom-margin" id="timezone-dropdown">
+              <a tabindex="0" href="javascript:void(0)"><span></span></a>
+              <div></div>
+            </div>
+            <span>Select a time range:</span>
+            <div class="add-top-margin-small add-bottom-margin">
+              <input type="text" id="from-time-input" name="from" class="custom-textbox">
+              <label for="to-time-input" id="to-time-txt">to</label>
+              <input type="text" id="to-time-input" name="to" class="custom-textbox">
+              <div class="add-top-margin-small flex-row">
+                <input type="checkbox" id="all-time-checkbox">
+                <label for="all-time-checkbox" id="all-time-time-txt">All dates</label>
+              </div>
+            </div>
+            <div id="download-button-container">
+              <span>Download data in csv format:</span>
+              <div class="control-group">
+                <a class="custom-button custom-button-primary" id="download-button">Download Smell Reports</a>
+              </div>
+            </div>
+            <p class="text">
+              Looking for a more specific data query? Visit <a target="_blank" href="https://github.com/CMU-CREATE-Lab/smell-pittsburgh-rails/wiki/Welcome-to-Smell-PGH-API">Smell PGH API</a> to learn more about our API.
+            </p>
+            <h2>Smell Report Highlight Reel</h2>
+            <hr>
+            <p class="text">
+              The following video animates the daily summary of smell reports. Each frame in the video represents one day.
+            </p>
+            <video muted playsinline controls class="image">
+              <source src="vid/smellpgh2017.mp4" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-10682694-20', 'auto');
+  ga('send', 'pageview');
+</script>
+
+</html>

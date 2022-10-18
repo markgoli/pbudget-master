@@ -1,0 +1,841 @@
+<!doctype html>
+<html>
+
+<head>
+  <title>Smell Pittsburgh</title>
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/base/jquery-ui.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/frame.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/controls.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/widgets.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href="css/custom.css" media="screen" rel="stylesheet" type="text/css" />
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,700' rel='stylesheet' type='text/css'>
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+  <script src="https://momentjs.com/downloads/moment.min.js"></script>
+  <script src="https://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/widgets.js"></script>
+  <script src="js/data.js"></script>
+  <style>
+    .menu-analysis {
+      color: rgb(255, 255, 255) !important;
+      opacity: 1 !important;
+      font-weight: 700 !important;
+    }
+
+    .no-ul-margins {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="menu-container"></div>
+  <div class="content-container">
+    <div class="content">
+      <div class="content-table flex-column">
+        <div class="flex-row">
+          <div class="flex-item flex-column">
+            <h2>Data Analysis and Research</h2>
+            <hr>
+            <p class="text">
+              The Smell Pittsburgh (Smell PGH) app has been active since September 2016. 
+              Over the past several years, residents have utilized Smell PGH to submit over 50 thousand reports (as of Dec 2020) related to pollution odors. 
+              These data offer multiple accounts of the human impacts of air pollution and provide insights into the air quality landscape of our region. 
+              Collectively, the Pittsburgh community has engaged in documenting conditions of the air and has made connections between air quality and our health. 
+              To highlight patterns and insights in the thousands of Smell PGH reports, this page outlines data analyses curated by Dr. Yen-Chia Hsu from the CREATE Lab. 
+              These assessments are based on Smell PGH data from 2017 through 2020. 
+              In the sections below, we examine these data from several different aspects in order to understand:
+            </p>
+            <ul>
+              <li>Levels and types of report submissions and public engagement</li>
+              <li>How reports are distributed over time and across neighborhoods</li>
+              <li>Patterns in the content of reports</li>
+              <li>Links between smell reports and pollutants in the air</li>
+            </ul>
+            <h2>Summary of Findings</h2>
+            <hr>
+            <p class="text">
+              The number of reports submitted through the Smell PGH app have steadily increased over the last four years (see <a href="#table1">Table 1</a>). 
+              User engagement with the app was slightly lower in 2020 (5,612 unique users) compared to 2019 (6,416 unique users); overall, however, there has been an upward trend in app use since its launch (see <a href="#table2">Table 2</a>). 
+              Many residents who used the Smell PGH app were actively engaged, with 25% to 50% of users submitting more than one report in a given week and/or month. 
+              When looking at the Pittsburgh region, we saw greater engagement with the app across local zip codes over the years. 
+              Local air quality at a given time appeared to affect the level of engagement with Smell PGH, with more users interacting with the app during poor air quality conditions. 
+              The Smell PGH map, which visualizes smell reports across our region as well as local air quality data, was another significant aspect of engagement, with over 80% of app users interacting with the map.
+            </p>
+            <p class="text">
+              When looking at overall submissions, most pollution odor reports (over 70% each year) were rated 3 or higher, on a scale of 1 to 5 (1 being just fine, and 5 being as bad as it gets). 
+              Smell PGH reports were primarily submitted during morning hours (especially between 7 and 10am), and were less frequent at nighttime. 
+              Most user comments described industrial pollution odors and symptoms related to air pollution exposure. 
+              Odor descriptions and symptoms were frequently linked to hydrogen sulfide, which has a "rotten egg" smell and is known to cause symptoms of headaches, dizziness, eye irritation, sore throat, cough, nausea, and shortness of breath 
+              (<a href="https://doi.org/10.1146/annurev.pa.32.040192.000545" target="_blank">Reiffenstein et al., 1992</a>; <a href="https://doi.org/10.1177/1091581810384882" target="_blank">Guidotti, 2010</a>). 
+              These narratives align with our finding that hydrogen sulfide is a significant driver of smell reports.
+            </p>
+            <p class="text">
+              Using Smell PGH reports and air quality data from local monitoring stations, we developed a statistical model to predict upcoming smell events and send push notifications to inform communities. 
+              Our analysis indicated that odor pollution events in the Greater Pittsburgh region are related to the joint effect of wind directions and hydrogen sulfide readings. 
+              This research shows that engaging residents in documenting their experiences with pollution odors can help identify local air pollution patterns. 
+              The dataset and code utilized in this analysis are <a href="https://github.com/CMU-CREATE-Lab/smell-pittsburgh-prediction" target="_blank">publicly available on GitHub</a>. 
+              For a more in depth explanation about our approach, please refer to our research publication below:
+            </p>
+            <p class="text">
+              <i>
+                Yen-Chia Hsu, Jennifer Cross, Paul Dille, Michael Tasota, Beatrice Dias, Randy Sargent, Ting-Hao (Kenneth) Huang, and Illah Nourbakhsh. 2020.
+                Smell Pittsburgh: Engaging Community Citizen Science for Air Quality.
+                ACM Transactions on Interactive Intelligent Systems. 10, 4, Article 32.
+                DOI:<a href="https://doi.org/10.1145/3369397" target="_blank">https://doi.org/10.1145/3369397</a>.
+                Preprint:<a href="https://arxiv.org/pdf/1912.11936.pdf" target="_blank">https://arxiv.org/pdf/1912.11936.pdf</a>.
+              </i>
+            </p>
+            <!-- <div class="custom-tab">
+              <div class="custom-tab-menu center">
+                <a class="custom-tab-menu-item active" data-content="2020">2020</a>
+                <a class="custom-tab-menu-item" data-content="2019">2019</a>
+                <a class="custom-tab-menu-item" data-content="2018">2018</a>
+                <a class="custom-tab-menu-item" data-content="2017">2017</a>
+              </div>
+              <div class="custom-tab-content" data-content="2020">
+              </div>
+              <div class="custom-tab-content" data-content="2019">
+              </div>
+              <div class="custom-tab-content" data-content="2018">
+              </div>
+              <div class="custom-tab-content" data-content="2017">
+              </div>
+            </div> -->
+            <!----------------------------------------------------------------------------------->
+            <h2 class="add-top-margin">Distribution of Smell Reports and Users Over Time</h2>
+            <hr>
+            <p class="text">
+              To understand user engagement over time, we aggregated the number of smell reports and unique users by month and also assessed the distribution of smell ratings by year. 
+              In general, user engagement based on the number of reports submitted was higher in 2020 than any prior calendar year. 
+              Each time a resident submits a smell report, they select a rating for the smell from a scale of 1 to 5 (1 being just fine, and 5 being as bad as it gets). 
+              <a href="#table1">Table 1</a> shows the distribution of smell reports, by year and rating. Over 70% of reports submitted in the years 2017 through 2020  were rated three or higher.
+            </p>
+            <!--To update this table, see the table in the "smell_pgh_tracker/smell_hist.csv" file-->
+            <div id="table1" style="text-align: center; color: dimgray"><i><b>Table 1: Distribution of Smell Reports</b></i></div>
+            <div class="custom-table-container center">
+              <table class="custom-table">
+                <thead>
+                  <tr class="bg-color-gray">
+                    <th class="text-center">Smell Rating</th>
+                    <th class="text-center">Description</th>
+                    <th class="text-center">2020</th>
+                    <th class="text-center">2019</th>
+                    <th class="text-center">2018</th>
+                    <th class="text-center">2017</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-center">1</td>
+                    <td class="text-center">Just fine!</td>
+                    <td class="text-center">1,562 (8.2%)</td>
+                    <td class="text-center">1,711 (9.5%)</td>
+                    <td class="text-center">1,199 (13.0%)</td>
+                    <td class="text-center">1,658 (20.4%)</td>
+                  </tr>
+                  <tr class="bg-color-light-gray">
+                    <td class="text-center">2</td>
+                    <td class="text-center">Barely noticeable</td>
+                    <td class="text-center">913 (4.8%)</td>
+                    <td class="text-center">798 (4.4%)</td>
+                    <td class="text-center">497 (5.4%)</td>
+                    <td class="text-center">665 (8.2%)</td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">3</td>
+                    <td class="text-center">Definitely noticeable</td>
+                    <td class="text-center">4,415 (23.3%)</td>
+                    <td class="text-center">4,305 (23.9%)</td>
+                    <td class="text-center">2,649 (28.8%)</td>
+                    <td class="text-center">2,246 (27.7%)</td>
+                  </tr>
+                  <tr class="bg-color-light-gray">
+                    <td class="text-center">4</td>
+                    <td class="text-center">It's getting pretty bad</td>
+                    <td class="text-center">5,999 (31.7%)</td>
+                    <td class="text-center">5,805 (32.3%)</td>
+                    <td class="text-center">2,932 (31.9%)</td>
+                    <td class="text-center">2,171 (26.8%)</td>
+                  </tr>
+                  <tr>
+                    <td class="text-center">5</td>
+                    <td class="text-center">About as bad as it gets!</td>
+                    <td class="text-center">6,058 (32.0%)</td>
+                    <td class="text-center">5,358 (29.8%)</td>
+                    <td class="text-center">1,918 (20.9%)</td>
+                    <td class="text-center">1,372 (16.9%)</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td class="text-center">Sum</td>
+                    <td class="text-center"></td>
+                    <td class="text-center">18,947</td>
+                    <td class="text-center">17,977</td>
+                    <td class="text-center">9,195</td>
+                    <td class="text-center">8,112</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            <p class="text">
+              <a href="#figure1">Figure 1</a> (shown below), further breaks down smell report submissions by month for each year.
+            </p>
+            <!--To update this graph, see the "smell_pgh_tracker/all_smell_*.png" files and add new tabs-->
+            <div id="figure1" style="text-align: center; color: dimgray"><i><b>Figure 1: Number of Smell Reports Submitted per Month</b></i></div>
+            <div class="custom-tab">
+              <div class="custom-tab-menu center">
+                <a class="custom-tab-menu-item active" data-content="2020">2020</a>
+                <a class="custom-tab-menu-item" data-content="2019">2019</a>
+                <a class="custom-tab-menu-item" data-content="2018">2018</a>
+                <a class="custom-tab-menu-item" data-content="2017">2017</a>
+              </div>
+              <div class="custom-tab-content" data-content="2020">
+                <p class="text text-center graph-title">
+                  Analysis of smell reports (2020)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 650px;" href="smell_pgh_tracker/all_smell_2020.png"><img src="smell_pgh_tracker/all_smell_2020.png"></a>
+              </div>
+              <div class="custom-tab-content" data-content="2019">
+                <p class="text text-center graph-title">
+                  Analysis of smell reports (2019)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 650px;" href="smell_pgh_tracker/all_smell_2019.png"><img src="smell_pgh_tracker/all_smell_2019.png"></a>
+              </div>
+              <div class="custom-tab-content" data-content="2018">
+                <p class="text text-center graph-title">
+                  Analysis of smell reports (2018)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 650px;" href="smell_pgh_tracker/all_smell_2018.png"><img src="smell_pgh_tracker/all_smell_2018.png"></a>
+              </div>
+              <div class="custom-tab-content" data-content="2017">
+                <p class="text text-center graph-title">
+                  Analysis of smell reports (2017)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 650px;" href="smell_pgh_tracker/all_smell_2017.png"><img src="smell_pgh_tracker/all_smell_2017.png"></a>
+              </div>
+            </div>
+            <p class="text">
+              Similar to the increase in smell reports, we also saw an overall rise in the number of community members engaged with the app over the years (reported in the next section). 
+              To estimate the number of unique users, we combined the results from Google Analytics and our customized tracker in the system. 
+              It is noteworthy that almost 50% of these unique users submitted more than one report each month. 
+              <a href="#figure2">Figure 2</a> (shown below) breaks down user engagement by month for each year.
+            </p>
+            <!--To update this graph, see the "smell_pgh_tracker/all_smell_user_*.png" files and add new tabs-->
+            <div id="figure2" style="text-align: center; color: dimgray"><i><b>Figure 2: User Engagement per Month</b></i></div>
+            <div class="custom-tab">
+              <div class="custom-tab-menu center">
+              <a class="custom-tab-menu-item active" data-content="2020">2020</a>
+                <a class="custom-tab-menu-item" data-content="2019">2019</a>
+                <a class="custom-tab-menu-item" data-content="2018">2018</a>
+                <a class="custom-tab-menu-item" data-content="2017">2017</a>
+              </div>
+              <div class="custom-tab-content" data-content="2020">
+                <p class="text text-center graph-title">
+                  Analysis of unique users (2020)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 650px;" href="smell_pgh_tracker/all_smell_user_2020.png"><img src="smell_pgh_tracker/all_smell_user_2020.png"></a>
+              </div>
+              <div class="custom-tab-content" data-content="2019">
+                <p class="text text-center graph-title">
+                  Analysis of unique users (2019)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 650px;" href="smell_pgh_tracker/all_smell_user_2019.png"><img src="smell_pgh_tracker/all_smell_user_2019.png"></a>
+              </div>
+              <div class="custom-tab-content" data-content="2018">
+                <p class="text text-center graph-title">
+                  Analysis of unique users (2018)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 650px;" href="smell_pgh_tracker/all_smell_user_2018.png"><img src="smell_pgh_tracker/all_smell_user_2018.png"></a>
+              </div>
+              <div class="custom-tab-content" data-content="2017">
+                <p class="text text-center graph-title">
+                  Analysis of unique users (2017)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 650px;" href="smell_pgh_tracker/all_smell_user_2017.png"><img src="smell_pgh_tracker/all_smell_user_2017.png"></a>
+              </div>
+            </div>
+            <p class="text">
+              We also wanted to understand how many of these community members were "actively" engaged with the app. 
+              For each report submitted, we assessed whether that same user logged another report within the previous 7 or 30 days. 
+              We then computed the total number of unique users who submitted a smell report in a given month and also submitted at least one other report 7 or 30 days before that time. 
+              This metric of "active engagement" offers insight into the proportion of users who submitted smell reports at a higher frequency. 
+              The results show that on average, about 25% - 50% of users were actively engaged with the app. 
+              <a href="#figure3">Figure 3</a> (given below) depicts the monthly breakdown of the proportion of unique users who actively reported odors.
+            </p>
+            <!--To update this graph, see the "smell_pgh_tracker/all_smell_time_diff_*.png" files and add new tabs-->
+            <div id="figure3" style="text-align: center; color: dimgray"><i><b>Figure 3: Monthly Breakdown of Active User Engagement</b></i></div>
+            <div class="custom-tab">
+              <div class="custom-tab-menu center">
+                <a class="custom-tab-menu-item active" data-content="2020">2020</a>
+                <a class="custom-tab-menu-item" data-content="2019">2019</a>
+                <a class="custom-tab-menu-item" data-content="2018">2018</a>
+                <a class="custom-tab-menu-item" data-content="2017">2017</a>
+              </div>
+              <div class="custom-tab-content" data-content="2020">
+                <p class="text text-center graph-title">
+                  Analysis of active users (2020)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 650px;" href="smell_pgh_tracker/all_smell_time_diff_2020.png"><img src="smell_pgh_tracker/all_smell_time_diff_2020.png"></a>
+                <p class="text">
+                  NOTE: We defined the "active users" metric by examining each report submitted in a given month, and assessing whether that same user logged another report within the previous 7 or 30 days. 
+                  We then aggregated the total number of unique users who submitted a report in the given month and also submitted at least one other report in the prior 7 or 30 days. 
+                  This number of active users is expressed as a proportion of the total number of unique users per month.
+                </p>
+              </div>
+              <div class="custom-tab-content" data-content="2019">
+                <p class="text text-center graph-title">
+                  Analysis of active users (2019)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 650px;" href="smell_pgh_tracker/all_smell_time_diff_2019.png"><img src="smell_pgh_tracker/all_smell_time_diff_2019.png"></a>
+                <p class="text">
+                  NOTE: We defined the "active users" metric by examining each report submitted in a given month, and assessing whether that same user logged another report within the previous 7 or 30 days. 
+                  We then aggregated the total number of unique users who submitted a report in the given month and also submitted at least one other report in the prior 7 or 30 days. 
+                  This number of active users is expressed as a proportion of the total number of unique users per month.
+                </p>
+              </div>
+              <div class="custom-tab-content" data-content="2018">
+                <p class="text text-center graph-title">
+                  Analysis of active users (2018)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 650px;" href="smell_pgh_tracker/all_smell_time_diff_2018.png"><img src="smell_pgh_tracker/all_smell_time_diff_2018.png"></a>
+                <p class="text">
+                  NOTE: We defined the "active users" metric by examining each report submitted in a given month, and assessing whether that same user logged another report within the previous 7 or 30 days. 
+                  We then aggregated the total number of unique users who submitted a report in the given month and also submitted at least one other report in the prior 7 or 30 days. 
+                  This number of active users is expressed as a proportion of the total number of unique users per month.
+                </p>
+              </div>
+              <div class="custom-tab-content" data-content="2017">
+                <p class="text text-center graph-title">
+                  Analysis of active users (2017)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 650px;" href="smell_pgh_tracker/all_smell_time_diff_2017.png"><img src="smell_pgh_tracker/all_smell_time_diff_2017.png"></a>
+                <p class="text">
+                  NOTE: We defined the "active users" metric by examining each report submitted in a given month, and assessing whether that same user logged another report within the previous 7 or 30 days. 
+                  We then aggregated the total number of unique users who submitted a report in the given month and also submitted at least one other report in the prior 7 or 30 days. 
+                  This number of active users is expressed as a proportion of the total number of unique users per month.
+                </p>
+              </div>
+            </div>
+            <!----------------------------------------------------------------------------------->
+            <h2 class="add-top-margin">Analysis of User Engagement</h2>
+            <hr>
+            <p class="text">
+              We computed the number of unique users who submitted at least one smell report and used the map at least once, respectively (see <a href="#table2">Table 2</a>). 
+              The number of interaction events with the map for each user was tracked anonymously using Google Analytics. 
+              This analysis shows that over 45% of our users contributed data, and over 80% of our users interacted with the map.
+            </p>
+            <!--To update this table, see the table in the "smell_pgh_tracker/user_hist.csv" file-->
+            <div id="table2" style="text-align: center; color: dimgray"><i><b>Table 2: User Engagement with The Smell PGH App</b></i></div>
+            <div class="custom-table-container center">
+              <table class="custom-table">
+                <thead>
+                  <tr class="bg-color-gray">
+                    <th class="text-center">Number of Unique Users</th>
+                    <th class="text-center">2020</th>
+                    <th class="text-center">2019</th>
+                    <th class="text-center">2018</th>
+                    <th class="text-center">2017</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="text-center">Submitted Reports</td>
+                    <td class="text-center">2,575 (45.9%)</td>
+                    <td class="text-center">3,267 (50.9%)</td>
+                    <td class="text-center">1,769 (66.9%)</td>
+                    <td class="text-center">1,308 (58.4%)</td>
+                  </tr>
+                  <tr class="bg-color-light-gray">
+                    <td class="text-center">Used the Map</td>
+                    <td class="text-center">5,148 (91.7%)</td>
+                    <td class="text-center">5,700 (88.8%)</td>
+                    <td class="text-center">2,249 (85.0%)</td>
+                    <td class="text-center">1,949 (87.0%)</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td class="text-center">Participated (N)</td>
+                    <td class="text-center">5,612</td>
+                    <td class="text-center">6,416</td>
+                    <td class="text-center">2,645</td>
+                    <td class="text-center">2,239</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            <p class="text">
+              <a href="#figure4">Figure 4</a> below shows the distribution of unique users who submitted at least one smell report, aggregated by the total number of submitted reports in a year.
+              Most users submitted up to about 100 reports a year, while a small number reported pollution odors more frequently with some submitting over 200 reports in 2019 and 2020.
+            </p>
+            <!--To update this graph, see the "smell_pgh_tracker/all_smell_hist_user_*.png" files and add new tabs-->
+            <div id="figure4" style="text-align: center; color: dimgray"><i><b>Figure 4: Distribution of Users by the Number of Reports Submitted</b></i></div>
+            <div class="custom-tab">
+              <div class="custom-tab-menu center">
+                <a class="custom-tab-menu-item active" data-content="2020">2020</a>
+                <a class="custom-tab-menu-item" data-content="2019">2019</a>
+                <a class="custom-tab-menu-item" data-content="2018">2018</a>
+                <a class="custom-tab-menu-item" data-content="2017">2017</a>
+              </div>
+              <div class="custom-tab-content" data-content="2020">
+                <p class="text text-center graph-title">
+                  Distribution of users by the number of submitted reports (2020)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 550px;" href="smell_pgh_tracker/all_smell_hist_user_2020.png"><img src="smell_pgh_tracker/all_smell_hist_user_2020.png"></a>
+              </div>
+              <div class="custom-tab-content" data-content="2019">
+                <p class="text text-center graph-title">
+                  Distribution of users by the number of submitted reports (2019)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 550px;" href="smell_pgh_tracker/all_smell_hist_user_2019.png"><img src="smell_pgh_tracker/all_smell_hist_user_2019.png"></a>
+              </div>
+              <div class="custom-tab-content" data-content="2018">
+                <p class="text text-center graph-title">
+                  Distribution of users by the number of submitted reports (2018)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 550px;" href="smell_pgh_tracker/all_smell_hist_user_2018.png"><img src="smell_pgh_tracker/all_smell_hist_user_2018.png"></a>
+              </div>
+              <div class="custom-tab-content" data-content="2017">
+                <p class="text text-center graph-title">
+                  Distribution of users by the number of submitted reports (2017)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 550px;" href="smell_pgh_tracker/all_smell_hist_user_2017.png"><img src="smell_pgh_tracker/all_smell_hist_user_2017.png"></a>
+              </div>
+            </div>
+            <p class="text">
+              <a href="#figure5">Figure 5</a> shows the distribution of unique users who interacted with the map at least once, aggregated by the total number of interaction events in a year.
+              Most users interacted with the map up to about 500 times a year, while a small number were more actively engaged with the map with some logging over 6000 interactions in 2020.
+            </p>
+            <!--To update this graph, see the "smell_pgh_tracker/all_ga_hist_user_*.png" files and add new tabs-->
+            <div id="figure5" style="text-align: center; color: dimgray"><i><b>Figure 5: Distribution of Users by the Number of Map Interactions</b></i></div>
+            <div class="custom-tab">
+              <div class="custom-tab-menu center">
+                <a class="custom-tab-menu-item active" data-content="2020">2020</a>
+                <a class="custom-tab-menu-item" data-content="2019">2019</a>
+                <a class="custom-tab-menu-item" data-content="2018">2018</a>
+                <a class="custom-tab-menu-item" data-content="2017">2017</a>
+              </div>
+              <div class="custom-tab-content" data-content="2020">
+                <p class="text text-center graph-title">
+                  Distribution of users by the number of map interaction events (2020)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 550px;" href="smell_pgh_tracker/all_ga_hist_user_2020.png"><img src="smell_pgh_tracker/all_ga_hist_user_2020.png"></a>
+              </div>
+              <div class="custom-tab-content" data-content="2019">
+                <p class="text text-center graph-title">
+                  Distribution of users by the number of map interaction events (2019)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 550px;" href="smell_pgh_tracker/all_ga_hist_user_2019.png"><img src="smell_pgh_tracker/all_ga_hist_user_2019.png"></a>
+              </div>
+              <div class="custom-tab-content" data-content="2018">
+                <p class="text text-center graph-title">
+                  Distribution of users by the number of map interaction events (2018)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 550px;" href="smell_pgh_tracker/all_ga_hist_user_2018.png"><img src="smell_pgh_tracker/all_ga_hist_user_2018.png"></a>
+              </div>
+              <div class="custom-tab-content" data-content="2017">
+                <p class="text text-center graph-title">
+                  Distribution of users by the number of map interaction events (2017)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 550px;" href="smell_pgh_tracker/all_ga_hist_user_2017.png"><img src="smell_pgh_tracker/all_ga_hist_user_2017.png"></a>
+              </div>
+            </div>
+            <p class="text">
+              We also assessed the number of unique users for each day. 
+              In <a href="#figure6">Figure 6</a> below, a darker color indicates a larger volume of unique users on that date. 
+              The second figure below shows the air quality index (AQI) from four pollutants: ozone (O3), particulate matter (PM2.5 and PM10), carbon monoxide (CO), and sulfur dioxide (SO2). 
+              The concentrations of the pollutants were obtained from monitoring stations in Pittsburgh operated by the Allegheny County Health Department. 
+              We computed the AQI based on the <a target="_blank" href="https://nepis.epa.gov/Exe/ZyPDF.cgi/P1006KOQ.PDF?Dockey=P1006KOQ.PDF">the EPA guidelines</a>. 
+              A darker color in the second figure indicates a higher AQI. 
+              The correlation between these two metrics (number of unique users and AQI) was over 0.4 each year since 2017. 
+              This indicates that air quality was a moderately important driver of user engagement.
+            </p>
+            <!--To update this graph, see the "smell_pgh_tracker/user_heatmap_*.png" and "smell_pgh_tracker/aqi_heatmap_*.png" files and add new tabs-->
+            <div id="figure6" style="text-align: center; color: dimgray"><i><b>Figure 6: Breakdown of Unique User Engagement and AQI</b></i></div>
+            <div class="custom-tab">
+              <div class="custom-tab-menu center">
+                <a class="custom-tab-menu-item active" data-content="2020">2020</a>
+                <a class="custom-tab-menu-item" data-content="2019">2019</a>
+                <a class="custom-tab-menu-item" data-content="2018">2018</a>
+                <a class="custom-tab-menu-item" data-content="2017">2017</a>
+              </div>
+              <div class="custom-tab-content" data-content="2020">
+                <p class="text text-center graph-title">
+                  Number of unique users by date (2020)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 810px;" href="smell_pgh_tracker/user_heatmap_2020.png"><img src="smell_pgh_tracker/user_heatmap_2020.png"></a>
+                <p class="text text-center graph-title">
+                  Air quality index by date (2020)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 800px;" href="smell_pgh_tracker/aqi_heatmap_2020.png"><img src="smell_pgh_tracker/aqi_heatmap_2020.png"></a>
+              </div>
+              <div class="custom-tab-content" data-content="2019">
+                <p class="text text-center graph-title">
+                  Number of unique users by date (2019)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 810px;" href="smell_pgh_tracker/user_heatmap_2019.png"><img src="smell_pgh_tracker/user_heatmap_2019.png"></a>
+                <p class="text text-center graph-title">
+                  Air quality index by date (2019)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 800px;" href="smell_pgh_tracker/aqi_heatmap_2019.png"><img src="smell_pgh_tracker/aqi_heatmap_2019.png"></a>
+              </div>
+              <div class="custom-tab-content" data-content="2018">
+                <p class="text text-center graph-title">
+                  Number of unique users by date (2018)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 810px;" href="smell_pgh_tracker/user_heatmap_2018.png"><img src="smell_pgh_tracker/user_heatmap_2018.png"></a>
+                <p class="text text-center graph-title">
+                  Air quality index by date (2018)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 800px;" href="smell_pgh_tracker/aqi_heatmap_2018.png"><img src="smell_pgh_tracker/aqi_heatmap_2018.png"></a>
+              </div>
+              <div class="custom-tab-content" data-content="2017">
+                <p class="text text-center graph-title">
+                  Number of unique users by date (2017)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 810px;" href="smell_pgh_tracker/user_heatmap_2017.png"><img src="smell_pgh_tracker/user_heatmap_2017.png"></a>
+                <p class="text text-center graph-title">
+                  Air quality index by date (2017)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 800px;" href="smell_pgh_tracker/aqi_heatmap_2017.png"><img src="smell_pgh_tracker/aqi_heatmap_2017.png"></a>
+              </div>
+            </div>
+            <!----------------------------------------------------------------------------------->
+            <h2 class="add-top-margin">Distribution of Smell Reports Aggregated by Time</h2>
+            <hr>
+            <p class="text">
+              To investigate the concentration of smell reports across time, we computed the average number of smell reports per day, aggregated by hour of day and day of week. 
+              The following figure (<a href="#figure7">Figure 7</a>) shows that most reports were submitted during morning hours (especially between 7 and 10am), and less frequently at nighttime. 
+              Distribution of report submissions was fairly even across days of the week in 2019 and 2020, while reports from earlier years were more concentrated on weekdays compared to weekends.
+            </p>
+            <!--To update this graph, see the "smell_pgh_tracker/all_smell_dh_*.png" files and add new tabs-->
+            <div id="figure7" style="text-align: center; color: dimgray"><i><b>Figure 7: Smell Reports Distribution by Day of Week and Hour of Day</b></i></div>
+            <div class="custom-tab">
+              <div class="custom-tab-menu center">
+                <a class="custom-tab-menu-item active" data-content="2020">2020</a>
+                <a class="custom-tab-menu-item" data-content="2019">2019</a>
+                <a class="custom-tab-menu-item" data-content="2018">2018</a>
+                <a class="custom-tab-menu-item" data-content="2017">2017</a>
+              </div>
+              <div class="custom-tab-content" data-content="2020">
+                <p class="text text-center graph-title">
+                  Average number of reports per day (2020)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 650px;" href="smell_pgh_tracker/all_smell_dh_2020.png"><img src="smell_pgh_tracker/all_smell_dh_2020.png"></a>
+              </div>
+              <div class="custom-tab-content" data-content="2019">
+                <p class="text text-center graph-title">
+                  Average number of reports per day (2019)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 650px;" href="smell_pgh_tracker/all_smell_dh_2019.png"><img src="smell_pgh_tracker/all_smell_dh_2019.png"></a>
+              </div>
+              <div class="custom-tab-content" data-content="2018">
+                <p class="text text-center graph-title">
+                  Average number of reports per day (2018)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 650px;" href="smell_pgh_tracker/all_smell_dh_2018.png"><img src="smell_pgh_tracker/all_smell_dh_2018.png"></a>
+              </div>
+              <div class="custom-tab-content" data-content="2017">
+                <p class="text text-center graph-title">
+                  Average number of reports per day (2017)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 650px;" href="smell_pgh_tracker/all_smell_dh_2017.png"><img src="smell_pgh_tracker/all_smell_dh_2017.png"></a>
+              </div>
+            </div>
+            <p class="text">
+              Moreover, we computed the average number of smell reports per day, aggregated by hour of day and month (see <a href="#figure8">Figure 8</a>). 
+              Reports were disparately distributed across the different months, which indicates different pollution and engagement patterns.
+            </p>
+            <!--To update this graph, see the "smell_pgh_tracker/all_smell_mh_*.png" files and add new tabs-->
+            <div id="figure8" style="text-align: center; color: dimgray"><i><b>Figure 8: Smell Reports Distribution by Month and Hour of Day</b></i></div>
+            <div class="custom-tab">
+              <div class="custom-tab-menu center">
+                <a class="custom-tab-menu-item active" data-content="2020">2020</a>
+                <a class="custom-tab-menu-item" data-content="2019">2019</a>
+                <a class="custom-tab-menu-item" data-content="2018">2018</a>
+                <a class="custom-tab-menu-item" data-content="2017">2017</a>
+              </div>
+              <div class="custom-tab-content" data-content="2020">
+                <p class="text text-center graph-title">
+                  Average number of reports per day (2020)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 650px;" href="smell_pgh_tracker/all_smell_mh_2020.png"><img src="smell_pgh_tracker/all_smell_mh_2020.png"></a>
+              </div>
+              <div class="custom-tab-content" data-content="2019">
+                <p class="text text-center graph-title">
+                  Average number of reports per day (2019)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 650px;" href="smell_pgh_tracker/all_smell_mh_2019.png"><img src="smell_pgh_tracker/all_smell_mh_2019.png"></a>
+              </div>
+              <div class="custom-tab-content" data-content="2018">
+                <p class="text text-center graph-title">
+                  Average number of reports per day (2018)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 650px;" href="smell_pgh_tracker/all_smell_mh_2018.png"><img src="smell_pgh_tracker/all_smell_mh_2018.png"></a>
+              </div>
+              <div class="custom-tab-content" data-content="2017">
+                <p class="text text-center graph-title">
+                  Average number of reports per day (2017)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 650px;" href="smell_pgh_tracker/all_smell_mh_2017.png"><img src="smell_pgh_tracker/all_smell_mh_2017.png"></a>
+              </div>
+            </div>
+            <!----------------------------------------------------------------------------------->
+            <h2 class="add-top-margin">Distribution of Smell Reports Aggregated by Region</h2>
+            <hr>
+            <p class="text">
+              The following maps (<a href="#figure9">Figure 9</a>) show the distribution of smell reports by Pittsburgh area zip codes across several years. 
+              A darker color indicates more reports in an area. 
+              Note that this map indicates citizen engagement with the Smell PGH app, but does not necessarily represent the severity of pollution in that region. 
+              In general, citizen engagement increased over the years, especially from 2018 to 2019.
+            </p>
+            <!--To update this map, edit the "smell_map.html" file and add new tabs-->
+            <div id="figure9" style="text-align: center; color: dimgray"><i><b>Figure 9: Smell Reports by Zip Code</b></i></div>
+            <div class="custom-tab">
+              <div class="custom-tab-menu center">
+                <a class="custom-tab-menu-item active" data-content="2020">2020</a>
+                <a class="custom-tab-menu-item" data-content="2019">2019</a>
+                <a class="custom-tab-menu-item" data-content="2018">2018</a>
+                <a class="custom-tab-menu-item" data-content="2017">2017</a>
+              </div>
+              <div class="custom-tab-content no-padding" data-content="2020">
+                <p class="text text-center graph-title add-top-right-left-padding add-bottom-border">
+                  Number of smell reports by zip codes (2020)
+                </p>
+                <iframe class="iframe-in-tab" src="smell_map.html?year=2020&type=smell"></iframe>
+              </div>
+              <div class="custom-tab-content no-padding" data-content="2019">
+                <p class="text text-center graph-title add-top-right-left-padding add-bottom-border">
+                  Number of smell reports by zip codes (2019)
+                </p>
+                <iframe class="iframe-in-tab" src="smell_map.html?year=2019&type=smell"></iframe>
+              </div>
+              <div class="custom-tab-content no-padding" data-content="2018">
+                <p class="text text-center graph-title add-top-right-left-padding add-bottom-border">
+                  Number of smell reports by zip codes (2018)
+                </p>
+                <iframe class="iframe-in-tab" src="smell_map.html?year=2018&type=smell"></iframe>
+              </div>
+              <div class="custom-tab-content no-padding" data-content="2017">
+                <p class="text text-center graph-title add-top-right-left-padding add-bottom-border">
+                  Number of smell reports by zip codes (2017)
+                </p>
+                <iframe class="iframe-in-tab" src="smell_map.html?year=2017&type=smell"></iframe>
+              </div>
+            </div>
+            <p class="text">
+              Also, the number of our users increased over the years in Pittsburgh. 
+              The following maps (<a href="#figure10">Figure 10</a>) show the distribution of unique users by Pittsburgh area zip codes across the years. 
+              A darker color indicates more unique users in an area.
+            </p>
+            <!--To update this map, edit the "smell_map.html" file and add new tabs-->
+            <div id="figure10" style="text-align: center; color: dimgray"><i><b>Figure 10: Unique Users by Zip Code</b></i></div>
+            <div class="custom-tab">
+              <div class="custom-tab-menu center">
+                <a class="custom-tab-menu-item active" data-content="2020">2020</a>
+                <a class="custom-tab-menu-item" data-content="2019">2019</a>
+                <a class="custom-tab-menu-item" data-content="2018">2018</a>
+                <a class="custom-tab-menu-item" data-content="2017">2017</a>
+              </div>
+              <div class="custom-tab-content no-padding" data-content="2020">
+                <p class="text text-center graph-title add-top-right-left-padding add-bottom-border">
+                  Number of unique users by zipcodes (2020)
+                </p>
+                <iframe class="iframe-in-tab" src="smell_map.html?year=2020&type=user"></iframe>
+              </div>
+              <div class="custom-tab-content no-padding" data-content="2019">
+                <p class="text text-center graph-title add-top-right-left-padding add-bottom-border">
+                  Number of unique users by zipcodes (2019)
+                </p>
+                <iframe class="iframe-in-tab" src="smell_map.html?year=2019&type=user"></iframe>
+              </div>
+              <div class="custom-tab-content no-padding" data-content="2018">
+                <p class="text text-center graph-title add-top-right-left-padding add-bottom-border">
+                  Number of unique users by zipcodes (2018)
+                </p>
+                <iframe class="iframe-in-tab" src="smell_map.html?year=2018&type=user"></iframe>
+              </div>
+              <div class="custom-tab-content no-padding" data-content="2017">
+                <p class="text text-center graph-title add-top-right-left-padding add-bottom-border">
+                  Number of unique users by zipcodes (2017)
+                </p>
+                <iframe class="iframe-in-tab" src="smell_map.html?year=2017&type=user"></iframe>
+              </div>
+            </div>
+            <!----------------------------------------------------------------------------------->
+            <h2 class="add-top-margin">Content Analysis of Smell Reports</h2>
+            <hr>
+            <p class="text">
+              To identify critical topics in citizen-contributed smell reports, we analyzed the frequency of words (unigram) and phrases (bigram) in the text fields. 
+              <a href="#figure11">Figure 11</a> (below) shows that the majority of user comments described industrial pollution odors and symptoms related to air pollution exposure. 
+              Odor descriptions and symptoms were frequently linked to hydrogen sulfide, which has a "rotten egg" smell and is known to cause symptoms of headaches, dizziness, 
+              eye irritation, sore throat, cough, nausea, and shortness of breath 
+              (<a href="https://doi.org/10.1146/annurev.pa.32.040192.000545" target="_blank">Reiffenstein et al., 1992</a>; <a href="https://doi.org/10.1177/1091581810384882" target="_blank">Guidotti, 2010</a>).
+            </p>
+            <!--To update this graph, see the "smell_pgh_tracker/all_smell_content_*.png" files and add new tabs-->
+            <div id="figure11" style="text-align: center; color: dimgray"><i><b>Figure 11: Distribution of Smell Descriptions and Associated Symptoms</b></i></div>
+            <div class="custom-tab">
+              <div class="custom-tab-menu center">
+                <a class="custom-tab-menu-item active" data-content="2020">2020</a>
+                <a class="custom-tab-menu-item" data-content="2019">2019</a>
+                <a class="custom-tab-menu-item" data-content="2018">2018</a>
+                <a class="custom-tab-menu-item" data-content="2017">2017</a>
+              </div>
+              <div class="custom-tab-content" data-content="2020">
+                <p class="text text-center graph-title">
+                  Content analysis (2020)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 800px;" href="smell_pgh_tracker/all_smell_content_2020.png"><img src="smell_pgh_tracker/all_smell_content_2020.png"></a>
+              </div>
+              <div class="custom-tab-content" data-content="2019">
+                <p class="text text-center graph-title">
+                  Content analysis (2019)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 800px;" href="smell_pgh_tracker/all_smell_content_2019.png"><img src="smell_pgh_tracker/all_smell_content_2019.png"></a>
+              </div>
+              <div class="custom-tab-content" data-content="2018">
+                <p class="text text-center graph-title">
+                  Content analysis (2018)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 800px;" href="smell_pgh_tracker/all_smell_content_2018.png"><img src="smell_pgh_tracker/all_smell_content_2018.png"></a>
+              </div>
+              <div class="custom-tab-content" data-content="2017">
+                <p class="text text-center graph-title">
+                  Content analysis (2017)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 800px;" href="smell_pgh_tracker/all_smell_content_2017.png"><img src="smell_pgh_tracker/all_smell_content_2017.png"></a>
+              </div>
+            </div>
+            <!----------------------------------------------------------------------------------->
+            <h2 class="add-top-margin">Relationship between Smell Reports and Pollutants</h2>
+            <hr>
+            <p class="text">
+              Comments from Smell PGH users and Pittsburgh community members suggested that hydrogen sulfide might be the primary source of pollution odors in the area. 
+              We took the smell reports from the following highlighted Pittsburgh regions (<a href="#figure12">Figure 12</a>) to analyze the relationship between smell, wind, and hydrogen sulfide.
+            </p>
+            <div id="figure12" style="text-align: center; color: dimgray"><i><b>Figure 12: Pittsburgh Regions with Smell PGH App Engagement</b></i></div>
+            <a class="image center" style="max-width: 840px;" href="img/smell_geo.png"><img src="img/smell_geo.png"></a>
+            <p class="text">
+              We used statistical methods to analyze the relationship between a subset of smell reports and hydrogen sulfide concentrations, as measured by county monitors in the region. 
+              The figure below (<a href="#figure13">Figure 13</a>) shows the result for 23 months of data (10/31/2016 to 9/27/2018). 
+              Note that this identified relationship does not imply causation.
+            </p>
+            <div id="figure13" style="text-align: center; color: dimgray"><i><b>Figure 13: Decision Process to Assess Relationship between Smell Reports and Pollutants</b></i></div>
+            <a class="image center" style="max-width: 840px;" href="img/smell_decision_tree.png"><img src="img/smell_decision_tree.png"></a>
+            <p class="text">
+              The decision tree (<a href="https://doi.org/10.1007/BF00116251" target="_blank">Quinlan, 1986</a>) depicted above is analogous to how a medical doctor may diagnose a patient. 
+              The top level of the tree shows the most influential predictor, which is the interaction between wind direction at the Lawrenceville monitoring station and hydrogen sulfide 
+              concentration at the Liberty monitoring station. The Allegheny County Health Department operates these monitoring stations. 
+              Based on this finding, we investigated this relationship further, by date.
+            </p>
+            <p class="text">
+              We compared two metrics that are related to smell reports and data from county air quality monitors, respectively. 
+              The first metric shows the sum of smell ratings for each day, excluding reports with ratings that are less than three. 
+              A darker color indicates a larger volume of smell reports on that date (see <a href="#figure14">Figure 14</a>). 
+              The second metric shows the maximum concentration of hydrogen sulfide per day, weighted by the contributions of the wind directions 
+              (from the south and the east) at both the Parkway and Liberty monitoring stations. The formula for each hourly measurement is:
+            </p>
+            <!--The LaTeX equation is C\cdot(3\sin\theta_1+3\sin\theta_2-\cos\theta_1-\cos\theta_2)-->
+            <img class="image center" src="img/eqn1.png" style="max-width: 300px;">
+            <p class="text">
+              where <img src="img/eqn2.png" style="vertical-align: -0.1em; max-width: 17px;"> represents the concentration of hydrogen sulfide in parts per billion (ppb) of the Liberty monitoring station, 
+              <img src="img/eqn3.png" style="vertical-align: -0.2em; max-width: 22px;"> is the wind direction at the Liberty monitoring station, 
+              and <img src="img/eqn4.png" style="vertical-align: -0.2em; max-width: 22px;"> is the wind direction at the Parkway monitoring station. 
+              A darker color in the second metric indicates a larger concentration of hydrogen sulfide in the area (see <a href="#figure14">Figure 14</a>). 
+              The correlation between these two metrics (the sum of smell ratings and the maximum weighted concentration of hydrogen sulfide per day) was over 0.5 in each of the years. 
+              This indicates that hydrogen sulfide was a significant driver of smell reports.
+            </p>
+            <!--To update this graph, see the "smell_pgh_tracker/smell_heatmap_*.png" and "smell_pgh_tracker/esdr_heatmap_*.png" files and add new tabs-->
+            <div id="figure14" style="text-align: center; color: dimgray"><i><b>Figure 14: Relationship Between Smell Reports and Hydrogen Sulfide</b></i></div>
+            <div class="custom-tab">
+              <div class="custom-tab-menu center">
+                <a class="custom-tab-menu-item active" data-content="2020">2020</a>
+                <a class="custom-tab-menu-item" data-content="2019">2019</a>
+                <a class="custom-tab-menu-item" data-content="2018">2018</a>
+                <a class="custom-tab-menu-item" data-content="2017">2017</a>
+              </div>
+              <div class="custom-tab-content" data-content="2020">
+                <p class="text text-center graph-title">
+                  Sum of smell ratings by date (2020)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 810px;" href="smell_pgh_tracker/smell_heatmap_2020.png"><img src="smell_pgh_tracker/smell_heatmap_2020.png"></a>
+                <p class="text text-center graph-title">
+                  Maximum of weighted hydrogen sulfide concentration by date (2020)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 800px;" href="smell_pgh_tracker/esdr_heatmap_2020.png"><img src="smell_pgh_tracker/esdr_heatmap_2020.png"></a>
+              </div>
+              <div class="custom-tab-content" data-content="2019">
+                <p class="text text-center graph-title">
+                  Sum of smell ratings by date (2019)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 810px;" href="smell_pgh_tracker/smell_heatmap_2019.png"><img src="smell_pgh_tracker/smell_heatmap_2019.png"></a>
+                <p class="text text-center graph-title">
+                  Maximum of weighted hydrogen sulfide concentration by date (2019)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 800px;" href="smell_pgh_tracker/esdr_heatmap_2019.png"><img src="smell_pgh_tracker/esdr_heatmap_2019.png"></a>
+              </div>
+              <div class="custom-tab-content" data-content="2018">
+                <p class="text text-center graph-title">
+                  Sum of smell ratings by date (2018)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 810px;" href="smell_pgh_tracker/smell_heatmap_2018.png"><img src="smell_pgh_tracker/smell_heatmap_2018.png"></a>
+                <p class="text text-center graph-title">
+                  Maximum of weighted hydrogen sulfide concentration by date (2018)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 800px;" href="smell_pgh_tracker/esdr_heatmap_2018.png"><img src="smell_pgh_tracker/esdr_heatmap_2018.png"></a>
+              </div>
+              <div class="custom-tab-content" data-content="2017">
+                <p class="text text-center graph-title">
+                  Sum of smell ratings by date (2017)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 810px;" href="smell_pgh_tracker/smell_heatmap_2017.png"><img src="smell_pgh_tracker/smell_heatmap_2017.png"></a>
+                <p class="text text-center graph-title">
+                  Maximum of weighted hydrogen sulfide concentration by date (2017)
+                </p>
+                <a class="image center add-top-margin-small" style="max-width: 800px;" href="smell_pgh_tracker/esdr_heatmap_2017.png"><img src="smell_pgh_tracker/esdr_heatmap_2017.png"></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i['GoogleAnalyticsObject'] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o),
+      m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    m.parentNode.insertBefore(a, m)
+  })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+  ga('create', 'UA-10682694-20', 'auto');
+  ga('send', 'pageview');
+
+  function init() {
+    widgets = new edaplotjs.Widgets();
+
+    // Create custom tabs
+    $(".custom-tab").each(function (i, element) {
+      widgets.createCustomTab({
+        selector: element
+      });
+    });
+  }
+
+  $(init);
+</script>
+
+</html>
